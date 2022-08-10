@@ -90,7 +90,7 @@ class Search extends React.Component {
         <p>hi this is ahsinvfnalblav</p>
         <p>hi this is ahsinvfnalblav</p>
         <p>hi this is ahsinvfnalblav</p>
-      </div>
+      </div
     );
   }
 }
