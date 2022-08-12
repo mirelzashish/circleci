@@ -46,10 +46,28 @@
 #   - run: yarn test
 
 version: 2.1
+# jobs is the task which are working for
 jobs:
-  build:
+
+  one:
     docker:
       - image: circleci/node:4.8.2
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "A first job"
+
+  two:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      -checkout
+      -run: echo"second job"
+
+
+
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
