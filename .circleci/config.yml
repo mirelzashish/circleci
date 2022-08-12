@@ -45,44 +45,44 @@
 
 #   - run: yarn test
 
-# version: 2.1
-# # jobs is the task were we need to add what we need
-# jobs:
-
-#   one:
-#     docker:
-#       - image: circleci/node:4.8.2
-#     steps:
-#       - checkout
-#       - run: echo "A first job"
-
-#   two:
-#     docker:
-#       - image: circleci/node:4.8.2
-#     steps:
-#       - checkout
-#       - run: echo "A second job"
-
-# workflows:
-#   version: 2
-#   one_and_two:
-#     jobs:
-#       - one
-#       - two
-
-orbs:
-  react: thefrontside/react@0.2.0
 version: 2.1
+# jobs is the task were we need to add what we need
+jobs:
+  one:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - checkout
+      - run: echo "A first job"
+      - commond: npm install
+
+  two:
+    docker:
+      - image: circleci/node:4.8.2
+    steps:
+      - checkout
+      - run: echo "A second job"
+      - commond: npm run build
+
 workflows:
-  push:
+  version: 2
+  one_and_two:
     jobs:
-      - react/install
-      - react/eslint:
-          requires:
-            - react/install
-      - react/test:
-          requires:
-            - react/install
-      - react/coverage:
-          requires:
-            - react/install
+      - one
+      - two
+# orbs:
+#   react: thefrontside/react@0.2.0
+# version: 2.1
+# workflows:
+#   push:
+#     jobs:
+#       - react/install
+#       - react/eslint:
+#           requires:
+#             - react/install
+#       - react/test:
+#           requires:
+#             - react/install
+#       - react/coverage:
+#           requires:
+#             - react/install
