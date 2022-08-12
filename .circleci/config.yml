@@ -48,7 +48,6 @@
 version: 2.1
 # jobs is the task which are working for
 jobs:
-
   one:
     docker:
       - image: circleci/node:4.8.2
@@ -60,10 +59,8 @@ jobs:
     docker:
       - image: circleci/node:4.8.2
     steps:
-      -checkout
-      - run: echo "second job"
-
-
+      - checkout
+      - run: echo "A second job"
 
 workflows:
   version: 2
