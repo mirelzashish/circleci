@@ -58,6 +58,9 @@ jobs:
       - run:
           name: lsist
           command: ls my-app/
+
+      - run:
+          name: pwd
           command: pwd
       - run:
           name: install dependencies
