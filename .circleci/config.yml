@@ -51,13 +51,14 @@ jobs:
   test:
     docker:
       - image: cimg/node:18.7.0
-    working_directory: ~/my-app
+    working_directory: ~/my-app/
 
     steps:
       - checkout
       - run:
           name: lsist
           command: ls my-app/
+          command: pwd
       - run:
           name: install dependencies
           command: npm install
