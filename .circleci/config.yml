@@ -64,7 +64,7 @@ jobs:
           command: pwd
       - run:
           name: install dependencies
-          command: npm install
+          command: cd my-app && npm install
       - run:
           name: run test
           command: npm run test
