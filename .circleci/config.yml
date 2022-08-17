@@ -44,32 +44,24 @@
 #     key: v1-dependencies-{{ checksum "package.json" }}
 
 #   - run: yarn test
-
 version: 2.1
-# jobs is the task were we need to add what we need
+# jobs is the task which are working for
 jobs:
+
   one:
     docker:
       - image: circleci/node:4.8.2
-    steps:
-      - checkout
-      - commond: npm install
-
-      - run: echo "A first job"
-
-  two:
     docker:
       - image: circleci/node:4.8.2
     steps:
-      - checkout
+      -checkout
+      - run: echo "second job"
 
-      - commond: npm run build
 
-      - run: echo "A second job"
 
 workflows:
   version: 2
   one_and_two:
     jobs:
       - one
-      - two
+      # - two
