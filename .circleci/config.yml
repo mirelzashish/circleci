@@ -46,6 +46,7 @@
 #   - run: yarn test
 version: 2.1
 # jobs is the task which are working for
+
 jobs:
   test:
     docker:
@@ -54,6 +55,9 @@ jobs:
 
     steps:
       - checkout
+      - run:
+          name: lsist
+          command: ls
       - run:
           name: install dependencies
           command: npm install
