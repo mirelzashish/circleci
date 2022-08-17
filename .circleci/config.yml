@@ -52,7 +52,12 @@ jobs:
       - image: cimg/node:18.7.0
     steps:
       - checkout
-      - run: node --version
+      - run:
+          name: install dependencies
+          command: npm install
+      - run:
+          name: run test
+          command: npm run test
 
 workflows:
   test-depoly:
