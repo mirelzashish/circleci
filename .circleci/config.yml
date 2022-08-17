@@ -57,7 +57,7 @@ jobs:
       - checkout
       - run:
           name: lsist
-          command: ls
+          command: ls my-app/
       - run:
           name: install dependencies
           command: npm install
