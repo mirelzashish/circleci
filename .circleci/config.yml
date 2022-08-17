@@ -50,6 +50,8 @@ jobs:
   test:
     docker:
       - image: cimg/node:18.7.0
+    working_directory: ~/repo
+
     steps:
       - checkout
       - run:
