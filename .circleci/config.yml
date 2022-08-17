@@ -67,7 +67,7 @@ jobs:
           command: cd my-app && npm install
       - run:
           name: run test
-          command: npm run test
+          command: cd my-app && npm run test
 
 workflows:
   test-depoly:
