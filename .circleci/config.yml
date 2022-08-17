@@ -47,22 +47,15 @@
 version: 2.1
 # jobs is the task which are working for
 jobs:
-
-  one:
+  test:
     docker:
-      - image: circleci/node:10.8.0
-        
-    working_directory: -/repo
-        
+      - image: cimg/node:18.7.0
     steps:
-      -checkout
-      - run: echo "second job"
-
-
+      - checkout
+      - run: node --version
 
 workflows:
-  version: 2
-  one_and_two:
+  test-depoly:
     jobs:
-      - one
+      - test
       # - two
