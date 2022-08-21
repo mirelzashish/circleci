@@ -12,14 +12,14 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: v1-deps-{{ checksum "/my-app/package-lock.json" }}
+          key: v1-deps-{{ checksum "package.json" }}
 
       - run:
           name: install dependencies
           command: cd my-app && npm install
 
       - save_cache:
-          key: v1-deps-{{ checksum "package-lock.json" }}
+          key: v1-deps-{{ checksum "package.json" }}
           paths:
             - node_modules
 
