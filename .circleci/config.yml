@@ -5,20 +5,32 @@ jobs:
   test:
     docker:
       - image: cimg/node:18.7.0
+    # for working_directory give your app name
     working_directory: ~/my-app/
 
     steps:
       - checkout
-      - run:
-          name: lsist
-          command: ls my-app/
 
-      - run:
-          name: pwd
-          command: pwd
+      - restore_cache:
+          key: v1-deps-{{ checksum "package-lock.json" }}
+
       - run:
           name: install dependencies
           command: cd my-app && npm install
+
+      - save_cache:
+          key: v1-deps-{{ checksum "package-lock.json" }}
+          paths:
+            - node_modules
+
+      # - run:
+      #     name: lsist
+      #     command: ls my-app/
+
+      # - run:
+      #     name: pwd
+      #     command: pwd
+
       - run:
           name: run test
           command: cd my-app && npm run test
