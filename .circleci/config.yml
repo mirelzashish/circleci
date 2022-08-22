@@ -24,6 +24,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - package.json
           key: v2-dependencies-{{ checksum "my-app/package.json" }}
 
       # run tests!
