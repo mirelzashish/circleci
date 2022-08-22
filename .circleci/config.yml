@@ -12,7 +12,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "my-app/node_modules/package.json" }}
+            - v2-dependencies-{{ checksum "my-app/package.json" }}
             # fallback to using the latest cache if no exact match is found
             # - v1-dependencies-
 
