@@ -26,8 +26,16 @@ jobs:
           key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
       # run tests!
-      - run: yarn test
+      # - run: cd my-app/yarn test
 
-      - run: yarn build
+      # - run: yarn build
+
+      - run:
+        name: list of dir
+        command: ls my-app/
+
+      - run:
+        name: pwd
+        command: pwd
 
       # - run: yarn netlify:deploy
