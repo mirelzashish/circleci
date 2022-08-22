@@ -28,7 +28,7 @@ jobs:
       # run tests!
       - run:
           name: run test
-          command: npm run test
+          command: npm test
 
       # - run: yarn build
 
