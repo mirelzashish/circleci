@@ -14,11 +14,12 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "my-app/package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            # - v1-dependencies-
 
       - run:
-          name: install dependencies
-          command: cd my-app && npm install
+          # name: install dependencies
+          # command: cd my-app && npm install
+          command: pwd
 
       - save_cache:
           paths:
