@@ -13,8 +13,8 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "my-app/package.json" }}
-            - v1-dependencies-
+            - v2-dependencies-{{ checksum "my-app/package.json" }}
+            - v2-dependencies-
       # - run:
       #     name: install dependencies
       #     command: cd my-app && npm install
@@ -22,7 +22,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "my-app/package.json" }}
+          key: v2-dependencies-{{ checksum "my-app/package.json" }}
 
       - run:
           name: lsist
