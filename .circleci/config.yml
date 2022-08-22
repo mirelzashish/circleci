@@ -18,7 +18,7 @@ jobs:
 
       - run:
           name: install dependencies
-          command: cd my-app && npm install
+          command: cd my-app && yarn install
 
       - save_cache:
           paths:
