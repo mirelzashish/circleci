@@ -1,43 +1,31 @@
-version: 2.1
-# jobs is the task which are working for
-
+version: 2
 jobs:
-  test:
+  build:
     docker:
-      - image: cimg/node:18.7.0
-    # for working_directory give your app name
-    working_directory: ~/my-app/
+      - image: node:11.10.1
+
+    working_directory: ~/my-app
 
     steps:
       - checkout
 
+      # Download and cache dependencies
       - restore_cache:
           keys:
-            - v2-dependencies-{{ checksum "my-app/package.json" }}
-            - v2-dependencies-
-      # - run:
-      #     name: install dependencies
-      #     command: cd my-app && npm install
+            - v1-dependencies-{{ checksum "my-app/package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
-          key: v2-dependencies-{{ checksum "my-app/package.json" }}
+          key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
-      - run:
-          name: lsist
-          command: ls my-app/
+      # run tests!
+      - run: yarn test
 
-      # - run:
-      #     name: pwd
-      #     command: pwd
+      # - run: yarn build
 
-      # - run:
-      #     name: run test
-      #     command: cd my-app && npm run test
-
-workflows:
-  test-depoly:
-    jobs:
-      - test
-      # - two
+      # - run: yarn netlify:deploy
