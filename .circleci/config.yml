@@ -12,18 +12,18 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "my-app/my-app/package.json" }}
+            - v1-dependencies-{{ checksum "my-app/package.json" }}
             # fallback to using the latest cache if no exact match is found
             # - v1-dependencies-
 
       - run:
           name: install dependencies
-          command: yarn install
+          command: cd my-app && npm install
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "my-app/my-app/package.json" }}
+          key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
       # run tests!
 
