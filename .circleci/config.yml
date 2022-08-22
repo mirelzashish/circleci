@@ -27,7 +27,7 @@ jobs:
 
       # run tests!
       - run:
-          command: cd my-app && npm test
+          command: npm test
 
       # - run: yarn build
 
