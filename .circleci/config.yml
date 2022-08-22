@@ -14,11 +14,11 @@ jobs:
           keys:
             - v2-dependencies-{{ checksum "my-app/package.json" }}
             # fallback to using the latest cache if no exact match is found
-            # - v1-dependencies-
+            - v1-dependencies-
 
       - run:
           name: install dependencies
-          command: cd my-app && yarn install
+          command: cd my-app && npm install
 
       - save_cache:
           paths:
