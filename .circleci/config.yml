@@ -12,15 +12,17 @@ jobs:
       - checkout
 
       - restore_cache:
-          key: dependency-cache-{{ checksum "my-app/package-lock.json" }}
+          keys:
+            - v1-dependencies-{{ checksum "my-app/package.json" }}
+            - v1-dependencies-
       # - run:
       #     name: install dependencies
       #     command: cd my-app && npm install
 
       - save_cache:
-          key: dependency-cache-{{ checksum "my-app/package-lock.json" }}
           paths:
-            - ./node_modules
+            - node_modules
+          key: v1-dependencies-{{ checksum "my-app/package.json" }}
 
       - run:
           name: lsist
