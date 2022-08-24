@@ -31,7 +31,7 @@
 #       # - run: yarn netlify:deployS
 
 
-version: 2
+version: 2.1
 
 jobs:
   build:
@@ -57,9 +57,22 @@ jobs:
       #       - ./node_modules
           
       #     key: v2-dependencies-{{ checksum "package-lock.json" }}
+
+  build1:
+    docker:
+      - image: cimg/node:14.18.1
+    working_directory: ~/my-app/my-app
+
+    steps:
+      - checkout:
+          path: ~/my-app
+      - restore_cache:
+          keys: 
+            - v1-dependencies-{{ checksum "package-lock.json" }}
           
 workflows:
   version: 2
   build-deploy:
     jobs:
       - build
+      - build1
