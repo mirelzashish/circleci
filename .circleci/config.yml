@@ -68,7 +68,7 @@ jobs:
           path: ~/my-app
       - restore_cache:
           keys: 
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "package.json" }}
           
 workflows:
   version: 2
