@@ -47,12 +47,10 @@ jobs:
           command:  |
             ls
             pwd
-            cd my-app
-
       - restore_cache:
           
           keys: 
-            - v2-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
       # - run: npm install
       # - save_cache:
       #     paths:
