@@ -44,17 +44,21 @@ jobs:
           path: ~/my-app
       - run:
           name: Update NPM
-          command: ls 
+          command:  |
+            ls
+            pwd
+            cd my-app
+
       - restore_cache:
           
           keys: 
             - v2-dependencies-{{ checksum "package-lock.json" }}
-      - run: npm install
-      - save_cache:
-          paths:
-            - ./node_modules
+      # - run: npm install
+      # - save_cache:
+      #     paths:
+      #       - ./node_modules
           
-          key: v2-dependencies-{{ checksum "package-lock.json" }}
+      #     key: v2-dependencies-{{ checksum "package-lock.json" }}
           
 workflows:
   version: 2
