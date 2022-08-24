@@ -1,31 +1,64 @@
-version: 2
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: node:14.18.1
+
+#     working_directory: ~/my-app
+
+#     steps:
+#       - checkout
+
+#       # Download and cache dependencies
+#       - restore_cache:
+#           keys:
+#             - v1-dependencies-{{ checksum "my-app/package.json" }}
+#             # fallback to using the latest cache if no exact match is found
+#             - v1-dependencies-
+
+#       - run: npm install
+
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "my-app/package.json" }}
+
+#       # run tests!
+#       # - run: yarn test
+
+#       # - run: yarn build
+
+#       # - run: yarn netlify:deployS
+
+
+version: 2.1
+
 jobs:
   build:
     docker:
-      - image: node:14.18.1
-
-    working_directory: ~/my-app
+      - image: cimg/node:14.18.1
+    working_directory: ~/my-app/my-app
 
     steps:
-      - checkout
-
-      # Download and cache dependencies
+      - checkout:
+          path: ~/my-app
+      - run:
+          name: Update NPM
+          command: ls 
       - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "my-app/package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+          
+          keys: 
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-          
       - run: npm install
-
       - save_cache:
           paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "my-app/package.json" }}
-
-      # run tests!
-      # - run: yarn test
-
-      # - run: yarn build
-
-      # - run: yarn netlify:deployS
+            - ./node_modules
+          
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
