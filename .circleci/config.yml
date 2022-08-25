@@ -87,7 +87,7 @@ jobs:
     working_directory: ~/my-app
     steps:
       - checkout:
-          path: ~/my-app
+        # path: ~/my-app
       - run:
           name: Update NPM
           command: ls
