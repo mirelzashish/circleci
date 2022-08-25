@@ -6,10 +6,10 @@ jobs:
   build:
     docker:
       - image: cimg/node:16.17.0
-    working_directory: ~/my-app/my-app
+    working_directory: ~/my-app
     steps:
       - checkout:
-          path: ~/firstapp
+          path: ~/mt-app
       - run:
           name: File Names
           command: |
