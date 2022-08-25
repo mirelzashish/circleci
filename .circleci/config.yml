@@ -1,42 +1,78 @@
-version: 2.1
-orbs:
-  node: circleci/node@4.7.0
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: node:14.18.1
+
+#     working_directory: ~/my-app
+
+#     steps:
+#       - checkout
+
+#       # Download and cache dependencies
+#       - restore_cache:
+#           keys:
+#             - v1-dependencies-{{ checksum "my-app/package.json" }}
+#             # fallback to using the latest cache if no exact match is found
+#             - v1-dependencies-
+
+#       - run: npm install
+
+#       - save_cache:
+#           paths:
+#             - node_modules
+#           key: v1-dependencies-{{ checksum "my-app/package.json" }}
+
+#       # run tests!
+#       # - run: yarn test
+
+#       # - run: yarn build
+
+#       # - run: yarn netlify:deployS
+
+
+version: 2
 
 jobs:
   build:
     docker:
-      - image: cimg/node:16.17.0
-    working_directory: ~/my-app
+      - image: cimg/node:14.18.1
+    working_directory: ~/my-app/my-app
+
     steps:
       - checkout:
-          path: ~/mt-app
+          path: ~/my-app
       - run:
-          name: File Names
-          command: |
-            pwd
+          name: Update NPM
+          command:  |
             ls
-            
+            pwd
       - restore_cache:
-          keys:
+          
+          keys: 
             - v1-dependencies-{{ checksum "package-lock.json" }}
-            - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: npm install
-      - save_cache:
-          paths:
-            - ./node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      # - run: npm install
+      # - save_cache:
+      #     paths:
+      #       - ./node_modules
+          
+      #     key: v2-dependencies-{{ checksum "package-lock.json" }}
 
-      - run:
-          name: App testing
-          command: npm run test
-      - run:
-          name: Build testing
-          command: npm run build
+  build1:
+    docker:
+      - image: cimg/node:14.18.1
+    working_directory: ~/my-app/my-app
 
-
+    steps:
+      - checkout:
+          path: ~/my-app
+      - restore_cache:
+          keys: 
+            - v1-dependencies-{{ checksum "package.json" }}
+          
 workflows:
+  version: 2
   build-deploy:
     jobs:
       - build
+      - build1
