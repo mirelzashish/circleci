@@ -28,9 +28,9 @@ jobs:
             - ./node_modules
           key: v1-dependencies-{{ checksum "package-lock.json" }}
 
-      - run:
-          name: App testing
-          command: npm run test
+      # - run:
+      #     name: App testing
+          # command: npm run test
       - run:
           name: Build testing
           command: npm run build
