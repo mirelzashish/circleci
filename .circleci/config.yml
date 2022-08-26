@@ -1,0 +1,42 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.7.0
+
+jobs:
+  build:
+    docker:
+      - image: cimg/node:16.17.0
+    working_directory: ~/my-app/my-app
+    steps:
+      - checkout:
+          path: ~/my-app
+      - run:
+          name: File Names
+          command: |
+            pwd
+            ls
+            
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-
+      - run:
+          name: install dependencies
+          command: npm install
+      - save_cache:
+          paths:
+            - ./node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+
+      # - run:
+      #     name: App testing
+          # command: npm run test
+      - run:
+          name: Build testing
+          command: npm run build
+
+
+workflows:
+  build-deploy:
+    jobs:
+      - build
