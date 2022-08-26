@@ -105,10 +105,10 @@ jobs:
 
       - run:
           name: App testing
-          command: npm run test
+          command: cd my-app && npm run test
       - run:
           name: Build testing
-          command: npm run build
+          command: cd my-app && npm run build
 
 workflows:
   build-deploy:
